@@ -15,9 +15,18 @@ session.headers.update(headers)
 session.verify=False
 
 start = time.perf_counter()
-r1 = session.get(f"https://{host}/restconf/data/Cisco-IOS-XE-native:native/hostname")
-r2 = session.get(f"https://{host}/restconf/data/Cisco-IOS-XE-native:native/hostname")
+try:
+    r1 = session.get(f"https://{host}/restconf/data/Cisco-IOS-XE-native:native/hostname", timeout=5)
+    r1.raise_for_status()
+    print(r1.json())
+except requests.HTTPError as e:
+    print(f"\nRequest error: {e}")
+except requests.ConnectionError as e:
+    print(f"\nCould not reach the device: {e}")
+except requests.Timeout as e:
+    print(f"\nDevice did not answer in 5 seconds: {e}")
+
+# r2 = session.get(f"https://{host}/restconf/data/Cisco-IOS-XE-native:native/hostname")
+
+
 print(f"\n{time.perf_counter() - start:.2f}s")
-print("\n")
-print(r1.json())
-print(r2.json())
