@@ -26,7 +26,5 @@ except requests.ConnectionError as e:
 except requests.Timeout as e:
     print(f"\nDevice did not answer in 5 seconds: {e}")
 
-# r2 = session.get(f"https://{host}/restconf/data/Cisco-IOS-XE-native:native/hostname")
-
 
 print(f"\n{time.perf_counter() - start:.2f}s")
