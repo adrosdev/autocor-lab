@@ -7,3 +7,4 @@
 | 3 | step03_session.py | `Session` persists auth, headers, and the connection — measured 33% faster on 2 calls |
 | 4 | step04_error_handling.py | 4xx is not a Python error; `raise_for_status`, typed exceptions, `timeout` |
 | 5 | step05_pagination | pagination with Link header and r.links |
+| 6 | step06_rate_limite.py | rate limiting, backoff withwith Retry-after and rest fallback |
